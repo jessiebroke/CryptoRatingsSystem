@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[29]:
+# In[1]:
 
 
 import requests
@@ -9,13 +9,15 @@ import pandas as pd
 import numpy as np
 import json
 import ijson
-from CMCAPIRequests import *
+from CMCAPIRequestsPandas import *
+from GHAPIRequests import *
 
 
-# In[30]:
+# In[2]:
 
 
-#Defining all variables for use by CMC
+#Defining all variables for use by CMC API
+#https://api.coinmarketcap.com/v1/ticker/
 
 cmcid = "id"; #all lower-case name of crypto
 cmcname = "name"; #case-sensitive name of crypto
@@ -33,11 +35,29 @@ cmcdailychg = "percent_change_24h" #24 hour percent change
 cmcweeklychg = "percent_change_7d" #1 week percent change
 cmclastupdate = "last_updated" #not sure yet
 
+#Defining all variables for use by GitHub API
+#https://api.github.com/repos/bitcoin/bitcoin
 
-# In[31]:
+ghid = "id"
+ghname = "name"
+ghrelease = "pushed_at"
+ghstars = "stargazers_count"
+ghforks = "forks_count"
+ghlanguage = "language"
+ghopenissues = "open_issues_count"
+ghsubcount = "subscribers_count"
 
 
-dfreturn = 0;
+# In[3]:
 
-dfreturn = callcmcapi("bitcoin", "max_supply")
+
+#Makes call to CMCAPIRequests to return row data as well as the specific value.
+callcmcapi("bitcoin", cmcpriceusd)
+
+
+# In[4]:
+
+
+#Makes call to GHAPIRequests to return Series data as well as specific value.
+callghapi("bitcoin", ghname)
 
